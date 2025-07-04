@@ -5,12 +5,10 @@ import { useI18n } from '@/context/I18nContext';
 import { useTheme } from '@/context/ThemeContext';
 import { useEvents, Event } from '@/context/EventContext';
 import { useNotifications } from '@/context/NotificationContext';
-import { useFriends } from '@/context/FriendsContext';
 import { router } from 'expo-router';
-import { Search, MapPin, Calendar, Users, Building2, GraduationCap, Heart, PartyPopper, Clapperboard, Ribbon, Bell, MessageCircle, UserPlus } from 'lucide-react-native';
+import { Search, MapPin, Calendar, Users, Building2, GraduationCap, Heart, PartyPopper, Clapperboard, Ribbon, Bell, MessageCircle } from 'lucide-react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import LanguageSwitcher from '@/components/LanguageSwitcher';
-import StoriesSection from '@/components/StoriesSection';
 import * as Location from 'expo-location';
 import { 
   useSharedValue, 
@@ -41,7 +39,6 @@ export default function HomeScreen() {
   const { theme } = useTheme();
   const { events, getFeaturedEvents, getNearbyEvents, searchEvents } = useEvents();
   const { unreadCount } = useNotifications();
-  const { getPendingRequestsCount } = useFriends();
   const [searchQuery, setSearchQuery] = useState('');
   const [location, setLocation] = useState<Location.LocationObject | null>(null);
   const [featuredEvents, setFeaturedEvents] = useState<Event[]>([]);
@@ -177,10 +174,6 @@ export default function HomeScreen() {
 
   const handleMessagesPress = () => {
     router.push('/chat');
-  };
-
-  const handleFriendsPress = () => {
-    router.push('/friends');
   };
 
   const renderEventCard = (event: Event, isHorizontal = false) => {
@@ -558,20 +551,6 @@ export default function HomeScreen() {
                 >
                   <MessageCircle size={20} color="white" />
                 </TouchableOpacity>
-
-                {/* Friend Requests */}
-                <TouchableOpacity 
-                  style={styles.headerButton}
-                  onPress={handleFriendsPress}
-                  activeOpacity={0.7}
-                >
-                  <UserPlus size={20} color="white" />
-                  {getPendingRequestsCount() > 0 && (
-                    <View style={styles.notificationBadge}>
-                      <Text style={styles.badgeText}>{getPendingRequestsCount()}</Text>
-                    </View>
-                  )}
-                </TouchableOpacity>
               </View>
             </View>
 
@@ -616,9 +595,6 @@ export default function HomeScreen() {
             </View>
           </LinearGradient>
         </Animated.View>
-
-        {/* Stories Section */}
-        <StoriesSection />
 
         {/* Animated Content */}
         <Animated.View

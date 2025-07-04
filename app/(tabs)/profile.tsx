@@ -416,13 +416,6 @@ export default function ProfileScreen() {
 
   const contentMenuItems = [
     {
-      icon: FileImage,
-      title: 'منشوراتي',
-      subtitle: 'عرض وإدارة الصور والملفات المرفوعة',
-      action: () => router.push('/my-posts'),
-      badge: '12', // Example count
-    },
-    {
       icon: Upload,
       title: 'رفع جديد',
       subtitle: 'إضافة صور أو ملفات جديدة',
