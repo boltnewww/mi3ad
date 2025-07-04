@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export interface Notification {
   id: string;
-  type: 'friend_request' | 'event_reminder' | 'message' | 'like' | 'comment' | 'booking_confirmed' | 'system';
+  type: 'event_reminder' | 'message' | 'like' | 'comment' | 'booking_confirmed' | 'system';
   title: string;
   message: string;
   data?: any;
@@ -34,20 +34,6 @@ const NotificationContext = createContext<NotificationContextType | undefined>(u
 
 // Active mock notifications data
 const initialNotifications: Notification[] = [
-  {
-    id: '1',
-    type: 'friend_request',
-    title: 'طلب صداقة جديد',
-    message: 'سارة أحمد أرسلت لك طلب صداقة',
-    isRead: false,
-    createdAt: new Date(Date.now() - 30 * 60 * 1000).toISOString(),
-    actionUrl: '/friends',
-    fromUser: {
-      id: '5',
-      name: 'سارة أحمد',
-      avatar: 'https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg',
-    },
-  },
   {
     id: '2',
     type: 'event_reminder',
@@ -156,12 +142,6 @@ export function NotificationProvider({ children }: { children: React.ReactNode }
         type: 'like' as const,
         title: 'إعجاب جديد',
         message: 'أعجب شخص ما بمنشورك',
-      },
-      {
-        type: 'friend_request' as const,
-        title: 'طلب صداقة',
-        message: 'لديك طلب صداقة جديد',
-        actionUrl: '/friends',
       },
     ];
 

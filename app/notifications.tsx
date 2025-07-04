@@ -5,7 +5,7 @@ import { useI18n } from '@/context/I18nContext';
 import { useTheme } from '@/context/ThemeContext';
 import { useNotifications, Notification } from '@/context/NotificationContext';
 import { router } from 'expo-router';
-import { ArrowLeft, Bell, Trash2, Check, CheckCheck, Settings, Filter, UserPlus, Calendar, MessageCircle, Heart, Bookmark, CircleAlert as AlertCircle } from 'lucide-react-native';
+import { ArrowLeft, Bell, Trash2, Check, CheckCheck, Settings, Filter, Calendar, MessageCircle, Heart, Bookmark, CircleAlert as AlertCircle } from 'lucide-react-native';
 
 export default function NotificationsScreen() {
   const { t } = useI18n();
@@ -92,8 +92,6 @@ export default function NotificationsScreen() {
 
   const getNotificationIcon = (type: Notification['type']) => {
     switch (type) {
-      case 'friend_request':
-        return <UserPlus size={20} color={theme.colors.primary} />;
       case 'event_reminder':
         return <Calendar size={20} color={theme.colors.warning} />;
       case 'message':
